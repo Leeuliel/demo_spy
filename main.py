@@ -3,7 +3,7 @@ Main entry point for the PyQt5 application.
 """
 
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton, QHBoxLayout
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton, QHBoxLayout,QScrollArea
 )
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
@@ -43,8 +43,9 @@ class SectionWidget(QWidget):
         self.text_area = QTextEdit()
         self.text_area.setReadOnly(True)
         self.text_area.setFont(QFont("Segoe UI", 12))
-        self.text_area.setPlaceholderText(text_placeholder)
+        self.text_area.setText(text_placeholder)
         self.text_area.setStyleSheet("background: #f5f5f5; border-radius: 8px;")
+        self.text_area.setLineWrapMode(QTextEdit.NoWrap)
 
         main_layout.addLayout(header_layout)
         main_layout.addWidget(self.text_area)
@@ -72,16 +73,41 @@ class MainWindow(QMainWindow):
         layout.setSpacing(24)
         layout.setContentsMargins(32, 32, 32, 32)
 
-        # Section 1 (collapsible)
-        section1 = SectionWidget("Section 1", "Read-only display area 1\nThis area can be collapsed.\nYou can add more text here to see how it behaves.\nYou can also add more text to see how it behaves when the text area is expanded.")
-        layout.addWidget(section1)
+        # Collapse/Expand All button (top-left corner)
+        self.sections = []
+        button_layout = QHBoxLayout()
+        self.collapse_all_btn = QPushButton("Collapse All")
+        self.collapse_all_btn.setFixedWidth(120)
+        self.collapse_all_btn.setFont(QFont("Segoe UI", 12, QFont.Bold))
+        self.collapse_all_btn.setStyleSheet("background: #e0e0e0; border-radius: 6px;")
+        self.collapse_all_btn.clicked.connect(self.toggle_all_sections)
+        button_layout.addWidget(self.collapse_all_btn)
+        button_layout.addStretch()
+        layout.addLayout(button_layout)
 
-        # Section 2 (collapsible)
-        section2 = SectionWidget("Section 2", "Read-only display area 2")
-        layout.addWidget(section2)
+        # Add 10 sections with unique text
+        for i in range(1, 11):
+            text = f"Section {i} text area\nLine 1 for section {i}\nLine 2 for section {i}\nLine 3 for section {i}\nLine 4 for section {i}\nLine 5 for section {i}\nLine 6 for section {i}\nLine 7 for section {i}\nLine 8 for section {i}\nLine 9 for section {i}\nLine 10 for section {i}"
+            section = SectionWidget(f"Section {i}", text)
+            self.sections.append(section)
+            layout.addWidget(section)
 
         central_widget.setLayout(layout)
-        self.setCentralWidget(central_widget)
+
+        # Add scroll area to main window
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setWidget(central_widget)
+        self.setCentralWidget(scroll_area)
+
+    def toggle_all_sections(self):
+        # Collapse if any section is expanded, else expand all
+        any_expanded = any(not s.collapsed for s in self.sections)
+        for s in self.sections:
+            s.collapsed = any_expanded
+            s.text_area.setVisible(not s.collapsed)
+            s.toggle_btn.setText("+" if s.collapsed else "−")
+        self.collapse_all_btn.setText("Expand All" if any_expanded else "Collapse All")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
