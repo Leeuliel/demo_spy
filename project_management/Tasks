@@ -1,0 +1,91 @@
+# Tasks
+
+## Task Management
+
+### Current Tasks
+- Task #1
+  - Short Description: Project setup and install PyQt5
+  - Details: Initialize the project, set up the environment, and install PyQt5.
+  - Depands on tasks: []
+  - Testing plan: Verify PyQt5 installation by running a simple window.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+- Task #2
+  - Short Description: Create main window class
+  - Details: Implement the main window using PyQt5.
+  - Depands on tasks: [1]
+  - Testing plan: Run the app and check that the window appears.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+- Task #3
+  - Short Description: Implement vertical layout with two sections
+  - Details: Add two sections to the main window, stacked vertically.
+  - Depands on tasks: [2]
+  - Testing plan: Window displays two sections, one after the other.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+- Task #4
+  - Short Description: Add label and read-only text display to each section
+  - Details: Each section should have a label and a read-only text display area.
+  - Depands on tasks: [3]
+  - Testing plan: Both sections show a label and a read-only text area.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+- Task #5
+  - Short Description: Apply modern styles (fonts, spacing, colors)
+  - Details: Use PyQt5 stylesheets and layouts for a modern look.
+  - Depands on tasks: [4]
+  - Testing plan: UI looks clean and modern; spacing and fonts are visually appealing.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+- Task #6
+  - Short Description: Test UI functionality
+  - Details: Test all UI elements for correct display and behavior.
+  - Depands on tasks: [5]
+  - Testing plan: Manual and automated tests for window, sections, labels, and text areas.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+- Task #7
+  - Short Description: Refactor and finalize documentation
+  - Details: Review code for readability, update documentation, and finalize README.
+  - Depands on tasks: [6]
+  - Testing plan: Code is clean, documentation is complete, README is updated.
+  - Task Status: Pending
+  - Created: 2025-08-09
+  - Modified: 2025-08-09
+
+### Completed Tasks
+<!-- Add completed tasks -->
+
+### Backlog
+<!-- Add backlog items -->
+
+### Task Categories
+
+#### Development Tasks
+- Task #1
+- Task #2
+- Task #3
+- Task #4
+- Task #5
+
+#### Testing Tasks
+- Task #6
+
+#### Documentation Tasks
+- Task #7
+
+#### Infrastructure Tasks
+- Task #1
